@@ -1,0 +1,8 @@
+ul {
+  list-style: none;
+}
+
+dl > dt {
+  font-size: 16px;
+  font-weight: 800;
+}

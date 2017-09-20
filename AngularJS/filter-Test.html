@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="css/master.css">
+  <script src="js/angular.js" charset="utf-8"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div ng-app="myApp">
+    <div ng-controller="myCtrl">
+      <dl>
+        <dt>'aHa' | uppercase</dt>
+        <dd>{{'aHa' | uppercase}}</dd>
+        <dt>'aHa' | lowercase</dt>
+        <dd>{{'aHa' | lowercase}}</dd>
+        <dt>1490161945000 | date:"yyyy-MM-dd HH:mm:ss"</dt>
+        <dd>{{1490161945000 | date:"yyyy-MM-dd HH:mm:ss"}}</dd>
+        <dt>149016.1945000 | number:2</dt>
+        <dd>{{149016.1945000 | number:2}}</dd>
+      </dl>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  var app = angular.module('myApp', []);
+
+  app.controller('myCtrl', ['$scope', '$rootScope', myCtrl]);
+
+  function myCtrl($scope, $rootScope) {
+
+  }
+</script>
+</html>

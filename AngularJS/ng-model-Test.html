@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="js/angular.js" charset="utf-8"></script>
+
+  <style media="screen">
+    ul {
+      list-style: none;
+    }
+    dl > dt {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    input.ng-invalid {
+      background-color: lightblue;
+    }
+  </style>
+
+  <title>Document</title>
+</head>
+<body>
+
+<form name="myForm" ng-app="">
+  Email: <input type="email" name="myAddress" ng-model="text" required>
+</form>
+
+<span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+<h1>状态: </h1>
+<ul>
+  <li>Valid: {{myForm.myAddress.$valid}} ~ 如果输入的值是合法的则为true</li>
+  <li>Dirty: {{myForm.myAddress.$dirty}} ~ 如果值改变则为 true</li>
+  <li>Touched: {{myForm.myAddress.$touched}} ~ 如果通过触屏点击则为 true</li>
+</ul>
+
+<p>编辑文本域，不同状态背景颜色会发送变化。</p>
+<p>文本域添加了 required 属性，该值是必须的，如果为空则是不合法的。</p>
+
+<div>
+  <h2>ng-model 指令根据表单域的状态添加/移除以下类: </h2>
+  <dl>
+    <dt>ng-empty</dt>
+    <dt>ng-not-empty</dt>
+    <dt>ng-touched</dt>
+    <dd>布尔值属性，表示用户是否和控件进行过交互</dd>
+    <dt>ng-untouched</dt>
+    <dt>ng-valid</dt>
+    <dd>布尔型属性，它指示表单是否通过验证。如果表单当前通过验证，他将为true</dd>
+    <dt>ng-invalid</dt>
+    <dd>未通过验证的表单</dd>
+    <dt>ng-dirty</dt>
+    <dd>布尔值属性，表示用户是否修改了表单。如果为 ture，表示有修改过；false 表示修没有修改过</dd>
+    <dt>ng-pending</dt>
+    <dt>ng-pristine</dt>
+    <dd>布尔值属性，表示用户是否修改了表单。如果为ture，表示没有修改过；false表示修改过</dd>
+  </dl>
+</div>
+
+</body>
+</html>

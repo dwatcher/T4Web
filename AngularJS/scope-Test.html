@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="css/master.css">
+  <script src="js/angular.js" charset="utf-8"></script>
+
+  <title>Document</title>
+</head>
+<body>
+
+  <div ng-app="myApp">
+    <div ng-controller="myCtrlA">
+      <h2>myCtrlA: </h2>
+      <dl>
+        <dt>paramA</dt>
+        <dd>{{paramA || 'null'}}</dd>
+        <dt>allA</dt>
+        <dd>{{allA}}</dd>
+        <dt>paramB</dt>
+        <dd>{{paramB || 'null'}}</dd>
+        <dt>allB</dt>
+        <dd>{{allB}}</dd>
+        <dt>$root.allA</dt>
+        <dd>{{$root.allA}}</dd>
+      </dl>
+      <br>
+      <span>parent ~ {{paramChild || 'null'}}</span>
+      <div ng-controller="myCtrlChild">
+        <span>child ~ {{paramChild}}</span>
+      </div>
+      <p>: 父作用域未获取到子作用域的变量</p>
+      <br>
+      <p>{{getString}}</p>
+      <p>{{getString()}}</p>
+    </div>
+    <div ng-controller="myCtrlB">
+      <h2>myCtrlB: </h2>
+      <dl>
+        <dt>paramA</dt>
+        <dd>{{paramA || 'null'}}</dd>
+        <dt>allA</dt>
+        <dd>{{allA}}</dd>
+        <dt>paramB</dt>
+        <dd>{{paramB || 'null'}}</dd>
+        <dt>allB</dt>
+        <dd>{{allB}}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p>$rootscope设置的变量在所有controller里面都是可以直接用{{$root.变量名}}来显示的，当然也可以赋值给$scope.</p>
+  <p>$rootScope 全局对象的属性可在所有子作用域中访问，子作用域互相无法访问对方的私有变量，这一点与js的函数作用域完全一致。</p>
+
+</body>
+<script type="text/javascript">
+  var app = angular.module('myApp', []);
+
+  app.controller('myCtrlA', ['$scope', '$rootScope', myCtrlA]);
+  app.controller('myCtrlB', ['$scope', '$rootScope', myCtrlB]);
+  app.controller('myCtrlChild', ['$scope', '$rootScope', myCtrlChild]);
+
+  function myCtrlA($scope, $rootScope) {
+    $scope.paramA = 'A';
+    $rootScope.allA = 'public A';
+
+    $scope.getString = function() {
+      return 'this is a string';
+    }
+  }
+
+  function myCtrlB($scope, $rootScope) {
+    $scope.paramB = 'B';
+    $rootScope.allB = 'public B';
+  }
+
+  function myCtrlChild($scope, $rootScope) {
+    $scope.paramChild = 'child';
+  }
+</script>
+</html>
